@@ -1,14 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProviders';
 
 const Register = () => {
 
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
+
+
     // const user = useContext(AuthContext);
-    const {user, createUser} = useContext(AuthContext);
+    const { user, createUser } = useContext(AuthContext);
     // console.log(createUser)
 
-    const handleRegister = event =>{
+    const handleRegister = event => {
         event.preventDefault();
         const form = event.target;
         const name = form.name.value;
@@ -17,14 +21,17 @@ const Register = () => {
         console.log(name, email, password);
 
         createUser(email, password)
-        .then(result => {
-            const loggedUser = result.user;
-            console.log(loggedUser);
-            form.reset();
-        })
-        .catch(error =>{
-            console.log(error)
-        })
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                form.reset();
+                setSuccess('User has been registered successfully.  ')
+                setError('')
+            })
+            .catch(error => {
+                console.log(error)
+                setError(error.message)
+            })
 
     }
     return (
@@ -60,6 +67,8 @@ const Register = () => {
                             <button className="btn btn-primary">Register</button>
                         </div>
                     </form>
+                    <p className='alert-error text-2xl'>{error}</p>
+                    <p className='alert-success text-2xl'>{success}</p>
                 </div>
             </div>
         </div>
