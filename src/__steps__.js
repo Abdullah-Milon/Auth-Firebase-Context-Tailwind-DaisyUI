@@ -11,3 +11,8 @@
  * 2. inside provider access children props and then use 
  * 
  * **/
+
+/**
+ * 1. Break down the create user function
+ * 2. AuthProvider will have auth and pass email + password from register
+ * **/

@@ -4,8 +4,9 @@ import { AuthContext } from '../Provider/AuthProviders';
 
 const Register = () => {
 
-    const user = useContext(AuthContext)
-    console.log(user)
+    // const user = useContext(AuthContext);
+    const {user, createUser} = useContext(AuthContext);
+    console.log(createUser)
 
     const handleRegister = event =>{
         event.preventDefault();
