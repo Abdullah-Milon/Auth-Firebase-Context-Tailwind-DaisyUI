@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProviders';
 
 const Header = () => {
-    const {user, logOut} = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
 
-    const handleLogOut = () =>{
+    const handleLogOut = () => {
         logOut()
-        .then(() =>{})
-        .catch(error => console.error(error))
+            .then(() => { })
+            .catch(error => console.error(error))
     }
     return (
         <div>
@@ -16,14 +16,16 @@ const Header = () => {
                 <a className="btn btn-ghost normal-case text-xl">AUTH MASTER</a>
                 <Link className="navbar bg-primary text-primary-content" to="/">Home</Link>
                 <Link className="navbar bg-primary text-primary-content" to="/orders">Orders</Link>
-                <Link className="navbar bg-primary text-primary-content" to="/profile">Profile</Link>
+                {
+                    user && <Link className="navbar bg-primary text-primary-content" to="/profile">Profile</Link>
+                }
                 <Link className="navbar bg-primary text-primary-content" to="/login">Login</Link>
                 <Link className="navbar bg-primary text-primary-content" to="/register">Register</Link>
                 {
                     user ? <>
-                    <span>{user.email}</span>
-                    <button onClick={handleLogOut} className='btn btn-xs'>Sign out</button>
-                    </> : <Link to ="/login">Login</Link>
+                        <span>{user.email}</span>
+                        <button onClick={handleLogOut} className='btn btn-xs'>Sign out</button>
+                    </> : <Link to="/login">Login</Link>
                 }
             </div>
         </div>
