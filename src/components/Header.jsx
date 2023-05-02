@@ -16,6 +16,7 @@ const Header = () => {
                 <a className="btn btn-ghost normal-case text-xl">AUTH MASTER</a>
                 <Link className="navbar bg-primary text-primary-content" to="/">Home</Link>
                 <Link className="navbar bg-primary text-primary-content" to="/orders">Orders</Link>
+                <Link className="navbar bg-primary text-primary-content" to="/profile">Profile</Link>
                 <Link className="navbar bg-primary text-primary-content" to="/login">Login</Link>
                 <Link className="navbar bg-primary text-primary-content" to="/register">Register</Link>
                 {
