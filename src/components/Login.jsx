@@ -7,7 +7,7 @@ const Login = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
-    const {signIn} = useContext(AuthContext)
+    const {signIn, signInWithGoogle} = useContext(AuthContext)
 
     const handleLogin = event =>{
         event.preventDefault();
@@ -29,6 +29,18 @@ const Login = () => {
             setError(error.message)
         })
     }
+
+    const handleGoogleSignIn =() =>{
+        signInWithGoogle()
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser)
+        })
+        .catch(error =>{
+            console.log(error)
+        })
+    }
+
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col ">
@@ -61,6 +73,7 @@ const Login = () => {
                     </Link>
                     <p className='alert-error text-2xl'>{error}</p>
                     <p className='alert-success text-2xl'>{success}</p>
+                    <button onClick={handleGoogleSignIn} className="btn btn-primary">Google</button>
                 </div>
             </div>
         </div>
